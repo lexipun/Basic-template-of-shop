@@ -1,0 +1,80 @@
+﻿@using ShopBussinesLogic.Models;
+@model ShopBussinesLogic.Models.Order
+
+<style>
+
+    div {
+        margin: 5px;
+    }
+
+    .withBorder {
+        border: solid thin black;
+        margin: 15px;
+        display: block;
+        max-width: 400px;
+        align-content:center;
+    }
+</style>
+
+
+<body>
+
+    <p class="withBorder" >Id of your Order @Model.Id</p>
+
+
+    @foreach (KeyValuePair<Product, int> orderedProduct in Model.OrderedProducts)
+    {
+        <div class="withBorder">
+            <div>
+                product Name -
+                @orderedProduct.Key.Name
+            </div>
+
+            <div>
+                Available Count -
+                @orderedProduct.Key.Count
+            </div>
+
+            <div>
+                You want to buy -
+                @orderedProduct.Value
+            </div>
+
+            <div>
+                Result Summ -
+                @(@orderedProduct.Value * @orderedProduct.Key.Price) (@orderedProduct.Key.Price per product)
+            </div>
+
+            <div>
+                State -
+                @orderedProduct.Key.State.ToString()
+            </div>
+        </div>
+    }
+
+
+    <form method="post" action="" class="withBorder">
+        <p> Subscribe </p>
+
+        <p>
+            Email:
+            <input type="email" name="email" value="@Model.Email" />
+        </p>
+        <input type="submit" value="Subscribe" />
+    </form>
+
+    <form method="post" action="" class="withBorder">
+
+        <p> Buy </p>
+        <p>
+            Adress:
+            <input type="text" name="deliveryAddress" value="@Model.DeliveryAddress" />
+        </p>
+        <p>
+            Email:
+            <input type="email" name="email" value="@Model.Email" />
+        </p>
+        <input type="submit" value="Buy" />
+    </form>
+
+</body>

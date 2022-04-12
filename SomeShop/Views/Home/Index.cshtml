@@ -1,0 +1,54 @@
+﻿@using ShopBussinesLogic.ProductOperations;
+@using ShopBussinesLogic.Models;
+@model List<Product>
+
+
+
+
+<body>
+
+
+
+
+    @foreach (Product product in Model)
+    {
+
+
+        <div class="withInline withBorder standartMargin">
+
+            <div class="withInline standartMargin">Name  - @product.Name </div>
+            <div class="withInline standartMargin">Price - @product.Price</div>
+            <div class="withInline standartMargin">Count - @product.Count</div>
+            <div class="withInline standartMargin">
+                <form action="../Order/Add" method="post">
+                    <input type="number" name="productId" value="@product.Id" style="visibility: collapse;"/>
+                    <input type="submit" value="Add to Order "/> 
+                </form>
+            </div>
+        </div>
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
